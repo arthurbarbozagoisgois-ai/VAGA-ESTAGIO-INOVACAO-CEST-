@@ -1,0 +1,75 @@
+from datetime import date
+data_atual = date.today()
+
+def finalizar():
+    print('Deseja finalizar esta solicitação? (s/n): ')
+    if input() == 's':
+        print("Solicitação finalizada com sucesso!")  
+    else:
+        print("Solicitação não finalizada. Você pode continuar acompanhando o andamento da solicitação.")
+        print (' ')
+        return andamento()
+
+def adicionar():
+    print ('Deseja adicionar mais uma solicitação? (s/n): ')
+    if input() == 's':
+        return solicitacao(), prioridade(), usuario(), andamento()
+    else:
+        print("Não há mais solicitações a serem adicionadas.")
+        print ('Obrigado por utilizar o Sistema de Solicitações!')
+        print (' ')
+        print (' ')
+        print (' ')
+
+def prioridade():
+    prioridade = input("Defina a prioridade da solicitação (ex: 'crítica/alta/média/baixa'): ")
+    while prioridade != 'crítica' and prioridade != 'alta' and prioridade != 'média' and prioridade != 'baixa':
+        print("Prioridade inválida. Por favor, escolha entre 'crítica', 'alta', 'média' ou 'baixa'.")
+        print ("  ")
+        prioridade =  input("Defina a prioridade da solicitação (ex: 'crítica/alta/média/baixa'): ")
+    if prioridade == 'crítica' or 'alta' or 'média' or 'baixa':
+        print("Solicitação aberta com sucesso!")
+        print (' ')
+        return prioridade
+        
+def solicitacao():
+    solicita_tipo = input("Defina o tipo de solicitação (ex: 'consulta/cancelamento'): ")
+    solicita_desc = input("Defina a descrição da solicitação: ")
+    return solicita_desc, solicita_tipo
+
+def usuario():
+    setor = input("Digite seu setor: ")
+    usuario = input("Qual o usuário solicitante? ")
+    categoria = input("Defina a categoria da solicitação (ex: 'financeiro/tecnologia/recursos humanos'): ")
+    resp_atendente = input("Defina o atendente responsável pela solicitação: ")
+    print (' ')
+    return setor, usuario, categoria, resp_atendente
+
+def andamento(): 
+    
+    loop = input("Sua solicitação foi atendida? (s/n): ")
+    while loop == 'n':
+        print("Aguarde, sua solicitação ainda está em andamento.")
+        print (' ')
+        escolha = finalizar()
+        return escolha
+
+    if loop == 's':
+        print("Sua solicitação foi atendida com sucesso!")
+        print (' ')
+        print (' ')
+        escolha2 = adicionar()
+        return escolha2
+        
+print("---- Bem-vindo ao Sistema de Solicitações! ----")
+print (' ')
+s = solicitacao()
+p = prioridade()
+print ('Data da Solicitação: ', data_atual)
+print (' ')
+u = usuario()
+print ('Consulta da solicitação em andamento...')
+print (' ')
+print (' ')
+print (' ')
+a = andamento()
